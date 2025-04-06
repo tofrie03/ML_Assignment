@@ -21,7 +21,15 @@ def fetch_data(start_date, end_date):
 
     response = requests.get(url, params=params, headers=headers)
     if response.status_code == 200:
-        values = response.json()['included'][0]['attributes']['values']
+        data = response.json()
+        for type in data['included']:
+            if type["id"] == "600":
+                values = data['included'][0]['attributes']['values']
+            else:
+                print("Next type")
+        if values is None:
+            print("Keine Werte gefunden.")
+            return pd.DataFrame()
         df = pd.DataFrame(values)
         # df['datetime'] = pd.to_datetime(df['datetime'], utc=True)
         df['value'] = df['value'].astype(float)
