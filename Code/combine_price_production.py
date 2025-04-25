@@ -52,7 +52,7 @@ def get_season(month):
         return 'Autumn'
 
 df_all['month'] = df_all['datetime'].dt.month_name()
-df_all['season'] = df_all['month'].apply(get_season)
+df_all['season'] = df_all['datetime'].dt.month.map(get_season)
 
 # Display result
 print(df_all.head())
