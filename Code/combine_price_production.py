@@ -3,7 +3,7 @@ import pandas as pd
 pd.set_option("display.max_columns", None)
 
 # CSV URLs
-price_csv = "https://raw.githubusercontent.com/tofrie03/ML_Assignment/refs/heads/main/exports/strompreise_spanien_2020-01-01%2000%3A00%3A00-2025-04-01%2000%3A00%3A00.csv"
+price_csv = "https://raw.githubusercontent.com/tofrie03/ML_Assignment/refs/heads/main/exports/price_spain.csv"
 production_csv = "https://raw.githubusercontent.com/tofrie03/ML_Assignment/refs/heads/main/exports/production_spain.csv"
 
 # Read CSVs
@@ -61,6 +61,16 @@ print("Shape:", df_all.shape)
 
 df_all = df_all.drop(columns=["percentage"])
 
+# Drop specified columns before saving
+columns_to_drop = [
+    "Combined cycle", "Solar thermal", "Thermal renewable", "Diesel engines",
+    "Gas turbine", "Vapor turbine", "Auxiliary generation", "Cogeneration and waste",
+    "hour", "weekday", "month",
+    "Exportation Andorra", "Exportation Morocco", "Exportation Portugal", "Exportation France",
+    "Importation France", "Importation Portugal", "Importation Morocco", "Importation Andorra"
+]
+df_all = df_all.drop(columns=columns_to_drop)
+
 # Save DataFrame to CSV
-df_all.to_csv("Energydata_Spain_2020-2025.csv", index=False)
+df_all.to_csv("Energydata_Spain_202304-202504.csv", index=False)
 print("CSV file 'Energydata_Spain_2020.csv' was created successfully.")
