@@ -10,7 +10,7 @@ export_dir = os.path.abspath("exports")
 def combine_csvs():
     # --- CSVs zusammenführen ---
     os.makedirs(export_dir, exist_ok=True)
-    combined_csv_path = os.path.join(export_dir, "combined_data.csv")
+    combined_csv_path = os.path.join(export_dir, "production_spain.csv")
     all_files = [f for f in os.listdir(download_dir) if f.endswith(".csv")]
 
     # Zählt die Anzahl der übersprungenen Zeilen

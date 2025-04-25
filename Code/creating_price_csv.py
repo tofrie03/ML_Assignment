@@ -38,7 +38,7 @@ def fetch_price_data(start_date, end_date):
 
 # Gesamter Zeitraum
 start = datetime(2020, 1, 1)
-end = datetime(2021, 1, 1)
+end = datetime(2025, 4, 1)
 
 # Liste aller Zeitabschnitte a 25 Tage
 step = timedelta(days=25)

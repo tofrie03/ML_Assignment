@@ -1,33 +1,37 @@
-import requests
+import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn import datasets
 
-def fetch_production_data(start_date, end_date, geo='peninsula'):
-    url = 'https://apidatos.ree.es/en/datos/generacion/estructura-generacion'
+# 1️⃣ Daten laden (Iris-Datensatz als Beispiel)
+iris = datasets.load_iris()
+X = iris.data  # Merkmale
+y = iris.target  # Zielwerte (Kategorien der Blumen)
 
-    params = {
-        'start_date': start_date,
-        'end_date': end_date,
-        'time_trunc': 'hour',
-        'geo_limit': geo
-    }
+# 2️⃣ Aufteilen in Trainings- und Testdaten
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    headers = {
-        "Accept": "application/json;",
-        "Content-Type": "application/json",
-        "Host": "apidatos.ree.es",
-        "User-Agent": "Python/3.11 requests/2.31.0"
-    }
+# 3️⃣ Modell erstellen und trainieren
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
 
-    response = requests.get(url, params=params, headers=headers)
+# 4️⃣ Vorhersagen treffen
+y_pred = model.predict(X_test)
 
-    if response.status_code == 200:
-        data = response.json()
-        values = data['included'][0]['attributes']['values']
-        df = pd.DataFrame(values)
-        df['datetime'] = pd.to_datetime(df['datetime'], utc=True)
-        df['value'] = df['value'].astype(float)
-        df['type'] = data['included'][0]['attributes']['type']
-        return df
-    else:
-        print(f"Fehler bei {start_date} bis {end_date}: {response.status_code}")
-        return pd.DataFrame()
+# 5️⃣ Evaluierung
+genauigkeit = accuracy_score(y_test, y_pred)
+print(f"Genauigkeit des Modells: {genauigkeit:.2f}")
+print("Klassifikationsbericht:")
+print(classification_report(y_test, y_pred, target_names=iris.target_names))
+
+# 6️⃣ Feature-Wichtigkeit visualisieren
+feature_importances = model.feature_importances_
+plt.bar(iris.feature_names, feature_importances)
+plt.xlabel("Merkmale")
+plt.ylabel("Wichtigkeit")
+plt.title("Feature Importance im Random Forest")
+plt.xticks(rotation=45)
+plt.show()

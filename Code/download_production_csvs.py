@@ -13,8 +13,8 @@ import os
 from datetime import datetime, timedelta
 
 # Zeitraum für den CSV-Download festlegen
-start_fetch = "2020-01-01"
-end_fetch = "2021-01-01"
+start_fetch = "2021-05-13"
+end_fetch = "2025-04-01"
 
 # old_time = 15.30 # Head
 
@@ -100,7 +100,7 @@ def download_csv(date):
         print("Generation-Inhalt nicht sichtbar oder nicht aktiv:", e)
 
     # Führe die AngularJS-Funktion zur CSV-Erzeugung über den Scope des Elements aus, mit Wiederholungslogik
-    max_attempts = 10
+    max_attempts = 5
     for attempt in range(max_attempts):
         try:
             script_result = driver.execute_script("""
