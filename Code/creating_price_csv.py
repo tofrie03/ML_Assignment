@@ -37,7 +37,7 @@ def fetch_price_data(start_date, end_date):
 
 
 # Gesamter Zeitraum
-start = datetime(2020, 1, 1)
+start = datetime(2023, 4, 1)
 end = datetime(2025, 4, 1)
 
 # Liste aller Zeitabschnitte a 25 Tage
@@ -66,5 +66,5 @@ print(all_data)
 # all_data['datetime'] = all_data['datetime'].dt.tz_localize(None)
 
 # Jetzt in csv speichern
-all_data.to_csv(f"strompreise_spanien_{start}-{end}.csv", index=False)
+all_data.to_csv(f"price_spain.csv", index=False)
 print("Datei wurde erfolgreich gespeichert.")

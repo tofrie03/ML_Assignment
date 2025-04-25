@@ -13,7 +13,7 @@ import os
 from datetime import datetime, timedelta
 
 # Zeitraum für den CSV-Download festlegen
-start_fetch = "2021-05-13"
+start_fetch = "2023-04-01"
 end_fetch = "2025-04-01"
 
 # old_time = 15.30 # Head
