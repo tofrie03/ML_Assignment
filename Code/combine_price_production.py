@@ -3,8 +3,8 @@ import pandas as pd
 pd.set_option("display.max_columns", None)
 
 # CSV URLs
-price_csv = "https://raw.githubusercontent.com/tofrie03/ML_Assignment/refs/heads/main/Material/strompreise_spanien_2020-01-01%2000%3A00%3A00-2021-01-01%2000%3A00%3A00.csv"
-production_csv = "https://raw.githubusercontent.com/tofrie03/ML_Assignment/refs/heads/main/Material/combined_data.csv"
+price_csv = "https://raw.githubusercontent.com/tofrie03/ML_Assignment/refs/heads/main/exports/strompreise_spanien_2020-01-01%2000%3A00%3A00-2025-04-01%2000%3A00%3A00.csv"
+production_csv = "https://raw.githubusercontent.com/tofrie03/ML_Assignment/refs/heads/main/exports/production_spain.csv"
 
 # Read CSVs
 df_price = pd.read_csv(price_csv, sep=",", parse_dates=["datetime"])
