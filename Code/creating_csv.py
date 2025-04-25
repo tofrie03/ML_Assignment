@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 # # %pip install openpyxl
 # import openpyxl
 
-def fetch_data(start_date, end_date):
+def fetch_price_data(start_date, end_date):
     url = 'https://apidatos.ree.es/en/datos/mercados/precios-mercados-tiempo-real'
     params = {
         'start_date': start_date,
@@ -58,7 +58,7 @@ while current < end:
 all_data = pd.DataFrame()
 for s, e in date_ranges:
     print(f"Hole Daten von {s.date()} bis {e.date()}...")
-    df = fetch_data(s.isoformat(), e.isoformat())
+    df = fetch_price_data(s.isoformat(), e.isoformat())
     all_data = pd.concat([all_data, df], ignore_index=True)
 
 # Ergebnisse anzeigen
