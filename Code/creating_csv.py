@@ -1,9 +1,6 @@
 import requests
 import pandas as pd
 from datetime import datetime, timedelta
-# import json
-# # %pip install openpyxl
-# import openpyxl
 
 def fetch_price_data(start_date, end_date):
     url = 'https://apidatos.ree.es/en/datos/mercados/precios-mercados-tiempo-real'
@@ -40,8 +37,8 @@ def fetch_price_data(start_date, end_date):
 
 
 # Gesamter Zeitraum
-start = datetime(2024, 1, 1)
-end = datetime(2025, 4, 1)
+start = datetime(2020, 1, 1)
+end = datetime(2021, 1, 1)
 
 # Liste aller Zeitabschnitte a 25 Tage
 step = timedelta(days=25)
